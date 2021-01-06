@@ -1,5 +1,6 @@
 import os
 import random
+import re
 
 from Crypto.Hash import SHA512
 from flask import request
@@ -34,3 +35,39 @@ def generate_hash(str, salt):
 
 def generate_random_string(length, sequence='abcdef'):
     return ''.join(random.sample(sequence, length))
+
+
+def is_empty(text: str) -> bool:
+    if text == '':
+        return True
+    return False
+
+
+def contains_whitespace(text: str) -> bool:
+    if re.search(r"\s", text):
+        return True
+    return False
+
+
+def has_length_less_than(text: str, length: int) -> bool:
+    if len(text) < length:
+        return True
+    return False
+
+
+def has_at_least_1_digit(text: str) -> bool:
+    if re.search(r"\d", text) is None:
+        return False
+    return True
+
+
+def has_at_least_1_uppercase(text: str) -> bool:
+    if re.search(r"[A-Z]", text) is None:
+        return False
+    return True
+
+
+def has_at_least_1_lowercase(text: str) -> bool:
+    if re.search(r"[a-z]", text) is None:
+        return False
+    return True
